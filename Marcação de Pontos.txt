@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcador de Pontos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Marcador de Pontos e Números Disponíveis</h1>
+        </header>
+
+        <section id="contact-info">
+            <h2>Informações do Marcador</h2>
+            <p><strong>Nome:</strong> João Silva</p>
+            <p><strong>Telefone:</strong> (11) 98765-4321</p>
+        </section>
+
+        <section id="scoreboard">
+            <h2>Marcador de Pontos</h2>
+            <div class="score">
+                <button id="decrement">-</button>
+                <span id="points">0</span>
+                <button id="increment">+</button>
+            </div>
+        </section>
+
+        <section id="available-numbers">
+            <h2>Números Disponíveis</h2>
+            <div class="numbers">
+                <p id="number-display">Clique em "Gerar" para exibir números.</p>
+                <button id="generate-number">Gerar Número</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+/* Resetando margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos do corpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Container principal */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+/* Cabeçalho */
+header h1 {
+    font-size: 1.8em;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+/* Seções */
+section {
+    margin-bottom: 30px;
+}
+
+/* Informações do marcador */
+#contact-info p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+/* Marcador de pontos */
+#scoreboard .score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#scoreboard button {
+    font-size: 1.5em;
+    padding: 10px;
+    width: 50px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#scoreboard button:hover {
+    background-color: #2980b9;
+}
+
+#scoreboard span {
+    font-size: 2em;
+    margin: 0 20px;
+}
+
+/* Números disponíveis */
+#available-numbers .numbers {
+    margin-top: 20px;
+}
+
+#generate-number {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#generate-number:hover {
+    background-color: #c0392b;
+}
+
+#number-display {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+// Marcador de pontos
+let points = 0;
+
+const incrementButton = document.getElementById('increment');
+const decrementButton = document.getElementById('decrement');
+const pointsDisplay = document.getElementById('points');
+
+incrementButton.addEventListener('click', () => {
+    points++;
+    pointsDisplay.textContent = points;
+});
+
+decrementButton.addEventListener('click', () => {
+    if (points > 0) {
+        points--;
+        pointsDisplay.textContent = points;
+    }
+});
+
+// Gerar números disponíveis
+const generateButton = document.getElementById('generate-number');
+const numberDisplay = document.getElementById('number-display');
+
+generateButton.addEventListener('click', () => {
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    numberDisplay.textContent = `Número gerado: ${randomNumber}`;
+});
